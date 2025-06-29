@@ -1,0 +1,22 @@
+<nav class="nav-bar">
+  <!-- If user is logged in -->
+  <ng-container *ngIf="userId; else guestNav">
+    <span class="user-label">Logged in as: <strong>{{ userId }}</strong></span>
+    <div class="nav-links">
+      <a routerLink="/home" routerLinkActive="active-link">Home</a>
+      <a routerLink="/change-box" routerLinkActive="active-link">Change Box</a>
+      <a [routerLink]="['/profile', userId]" routerLinkActive="active-link">Profile</a>
+  
+      <button (click)="logout()">Sign Out</button>
+    </div>
+  </ng-container>
+
+  <!-- Template for guest users -->
+  <ng-template #guestNav>
+    <div class="nav-links">
+      <a routerLink="/login" routerLinkActive="active-link">Login</a>
+      <a routerLink="/change-box" routerLinkActive="active-link">Box-Change</a>
+      <a [routerLink]="['/profile', userId]" routerLinkActive="active-link">Profile</a>
+    </div>
+  </ng-template>
+</nav>

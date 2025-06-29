@@ -1,0 +1,16 @@
+<div class="txn-container">
+  <h2 class="txn-header">Recent Transactions</h2>
+
+  <div *ngIf="transaction.length; else noTxn">
+    <div class="txn-item" *ngFor="let txn of transaction">
+      <p><strong>Amount:</strong> ₹{{ txn.amount }}</p>
+      <p><strong>Type:</strong> {{ txn.type }}</p>
+      <p *ngIf="txn.breakdown"><strong>Breakdown:</strong> {{ txn.breakdown }}</p>
+      <p><small><strong>Date:</strong> {{ txn.date }}</small></p>
+    </div>
+  </div>
+
+  <ng-template #noTxn>
+    <p class="no-data">No transactions found.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,37 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+    <h2>Login</h2>
+
+    <div class="form-group">
+      <label for="userId">User ID</label>
+      <input
+        id="userId"
+        formControlName="userId"
+        (input)="onInputUserId()"
+        placeholder="Enter User ID"
+        [class.invalid]="loginForm.get('userId')?.invalid && loginForm.get('userId')?.touched"
+      />
+      <div class="error" *ngIf="loginForm.get('userId')?.invalid && loginForm.get('userId')?.touched">
+        User ID must be alphanumeric.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="Enter Password"
+        [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+      />
+      <div class="error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        Password must be 6–12 characters
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>
+</div>
